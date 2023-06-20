@@ -1,2 +1,1 @@
-# vaibhavhiwale.github.io
-vaibhavhiwale.github.io
+this is my personal website
