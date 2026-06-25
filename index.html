@@ -47,20 +47,10 @@
 
         <!-- Nav links -->
         <ul class="navbar-nav ms-auto">
-
-          <!-- Blog dropdown -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button"
-               data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="blog/lightyear.html">Lightyear</a></li>
-              <li><a class="dropdown-item" href="blog/nobel-laureate.html">Meet With Nobel Laureate</a></li>
-            </ul>
-          </li>
-
           <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
           <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
           <li class="nav-item"><a class="nav-link" href="cv.html">CV</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Journal</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
 
@@ -93,6 +83,7 @@
 
           <span class="hero-label">CFD Engineer &amp; Independent Consultant</span>
 
+          <span class="hero-accent-bar"></span>
           <h1 class="hero-title">Hi, I'm Vaibhav.</h1>
 
           <p class="hero-subtitle">
@@ -327,122 +318,6 @@
 
 
   <!-- ============================================================
-       MEDIA SECTION — YouTube Videos & Instagram
-       ============================================================
-
-       HOW TO ADD A YOUTUBE VIDEO:
-       1. Go to the YouTube video you want to embed.
-       2. Click Share → Embed.
-       3. Copy only the VIDEO_ID from the URL (the part after "watch?v=").
-          Example: for https://youtube.com/watch?v=abc123, the ID is abc123.
-       4. Replace YOUR_VIDEO_ID below with that ID.
-       5. Update the <p class="media-caption"> text.
-       6. Copy the whole <div class="col-12 col-md-6"> block to add more videos.
-
-       HOW TO ADD AN INSTAGRAM POST:
-       1. Open the Instagram post on instagram.com (desktop browser).
-       2. Click the three-dot menu → Embed.
-       3. Copy the embed code Instagram gives you.
-       4. Paste it inside the <div class="instagram-embed-wrapper"> below.
-       5. The <script> tag at the bottom of the section activates all embeds.
-       ============================================================ -->
-  <section class="section section-light" id="media">
-    <div class="container">
-
-      <div class="text-center mb-5">
-        <span class="section-label">Creative Corner</span>
-        <h2 class="section-title">Videos &amp; Photos</h2>
-        <hr class="section-divider center">
-        <p class="mx-auto" style="max-width: 500px;">
-          A glimpse into my work, travels, and creative pursuits outside the simulation terminal.
-        </p>
-      </div>
-
-      <!-- YouTube Videos -->
-      <h5 class="mb-4" style="font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint);">Videos</h5>
-      <div class="row g-4 mb-5">
-
-        <!-- VIDEO 1 — Replace YOUR_VIDEO_ID_1 with the YouTube video ID -->
-        <div class="col-12 col-md-6">
-          <div class="video-wrapper">
-            <iframe
-              src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1"
-              title="Video 1"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <p class="media-caption">Replace this caption with a description of the video.</p>
-        </div>
-
-        <!-- VIDEO 2 — Replace YOUR_VIDEO_ID_2 with the YouTube video ID -->
-        <div class="col-12 col-md-6">
-          <div class="video-wrapper">
-            <iframe
-              src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2"
-              title="Video 2"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <p class="media-caption">Replace this caption with a description of the video.</p>
-        </div>
-
-        <!-- To add more videos: copy the <div class="col-12 col-md-6"> block above and paste it here -->
-
-      </div>
-
-      <!-- Instagram Posts -->
-      <h5 class="mb-4" style="font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint);">From Instagram</h5>
-      <div class="row g-4">
-
-        <!-- INSTAGRAM POST 1 — Paste the embed code Instagram gives you inside the wrapper div -->
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="instagram-embed-wrapper">
-            <!-- Paste your Instagram embed <blockquote> code here -->
-            <!-- Example:
-            <blockquote class="instagram-media"
-              data-instgrm-permalink="https://www.instagram.com/p/YOUR_POST_ID/"
-              data-instgrm-version="14"
-              style="width:100%;">
-            </blockquote>
-            -->
-            <p style="color: var(--text-faint); font-size: 0.85rem; border: 1px dashed var(--border); padding: 20px; text-align: center; border-radius: 4px;">
-              Instagram post 1 — paste embed code here
-            </p>
-          </div>
-        </div>
-
-        <!-- INSTAGRAM POST 2 -->
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="instagram-embed-wrapper">
-            <p style="color: var(--text-faint); font-size: 0.85rem; border: 1px dashed var(--border); padding: 20px; text-align: center; border-radius: 4px;">
-              Instagram post 2 — paste embed code here
-            </p>
-          </div>
-        </div>
-
-        <!-- INSTAGRAM POST 3 -->
-        <div class="col-12 col-sm-6 col-lg-4">
-          <div class="instagram-embed-wrapper">
-            <p style="color: var(--text-faint); font-size: 0.85rem; border: 1px dashed var(--border); padding: 20px; text-align: center; border-radius: 4px;">
-              Instagram post 3 — paste embed code here
-            </p>
-          </div>
-        </div>
-
-        <!-- To add more Instagram posts: copy the <div class="col-..."> block above and paste here -->
-
-      </div>
-
-    </div>
-
-    <!-- Instagram embed activation script — keep this at the end of the section -->
-    <script async src="//www.instagram.com/embed.js"></script>
-  </section>
-
-
-  <!-- ============================================================
        CALL-TO-ACTION BAND
        ============================================================ -->
   <section class="cta-section">
@@ -500,7 +375,7 @@
             <li><a href="#services">Services</a></li>
             <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="cv.html">CV</a></li>
-            <li><a href="blog.html">Blog</a></li>
+            <li><a href="blog.html">Journal</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>

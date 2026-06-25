@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Blog by Vaibhav Hiwale — writing about CFD engineering, travel, music, books, geopolitics, and life.">
-  <title>Blog | Vaibhav Hiwale</title>
+  <meta name="description" content="Vaibhav Hiwale's Journal — engineering deep-dives, travel stories, music, marathon training, books, and geopolitics.">
+  <title>Journal | Vaibhav Hiwale</title>
 
   <link rel="shortcut icon" href="assets/images/website-128x128.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
@@ -27,17 +27,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="#" role="button"
-               data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="blog/lightyear.html">Lightyear</a></li>
-              <li><a class="dropdown-item" href="blog/nobel-laureate.html">Meet With Nobel Laureate</a></li>
-            </ul>
-          </li>
           <li class="nav-item"><a class="nav-link" href="index.html#services">Services</a></li>
           <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
           <li class="nav-item"><a class="nav-link" href="cv.html">CV</a></li>
+          <li class="nav-item"><a class="nav-link active" href="blog.html">Journal</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
         <div class="navbar-social ms-3">
@@ -53,11 +46,10 @@
   <!-- PAGE HEADER -->
   <section class="page-header">
     <div class="container">
-      <span class="section-label">Thoughts &amp; Stories</span>
-      <h1>Blog</h1>
-      <p style="margin-top: 12px; max-width: 520px; font-size: 1rem; color: var(--text-muted);">
-        I write about engineering, the places I visit, books I read,
-        music I make, and ideas that keep me thinking.
+      <span class="section-label">Engineering · Travel · Music · Marathon · Books · Ideas</span>
+      <h1>Journal</h1>
+      <p style="margin-top: 12px; max-width: 560px; font-size: 1rem; color: var(--text-muted);">
+        Thinking in public — from fluid dynamics and solver code to running shoes, flute strings, and the world outside the lab.
       </p>
     </div>
   </section>
@@ -71,7 +63,7 @@
           Use blog/lightyear.html as a template.
        2. Copy one <div class="col-12 col-md-6"> card block below.
        3. Update the category label, date, title, excerpt, and href.
-       4. Paste it at the top of the row (newest first).
+       4. Paste it at the TOP of the row (newest post first).
        ============================================================ -->
   <section class="section section-light">
     <div class="container">
@@ -121,51 +113,164 @@
 
 
   <!-- ============================================================
-       UPCOMING TOPICS
-       Shows readers what kind of content is coming — also helps
-       with SEO by signalling the site's content areas.
-       Update this section as you start writing in new categories.
+       MEDIA HUB — YouTube Videos & Instagram Reels
+       ============================================================
+
+       HOW TO ADD A YOUTUBE VIDEO:
+       1. Go to the YouTube video, click Share → Embed.
+       2. Copy the VIDEO_ID from the URL (part after "watch?v=").
+          Example: for https://youtube.com/watch?v=abc123, the ID is abc123.
+       3. Replace YOUR_VIDEO_ID_1 with that ID.
+       4. Update the <p class="media-caption"> description.
+       5. Copy the <div class="col-12 col-md-6"> block to add more videos.
+
+       HOW TO ADD AN INSTAGRAM POST:
+       1. Open the post on instagram.com (desktop), click ··· → Embed.
+       2. Copy the embed code Instagram gives you.
+       3. Paste it inside <div class="instagram-embed-wrapper">.
+       4. The <script> tag at the end of this section activates all embeds.
        ============================================================ -->
-  <section class="section">
+  <section class="section" id="media">
     <div class="container">
 
       <div class="mb-5">
-        <span class="section-label">On the way</span>
-        <h2 class="section-title">Coming Soon</h2>
+        <span class="section-label">Videos &amp; Reels</span>
+        <h2 class="section-title">Media</h2>
         <hr class="section-divider">
-        <p style="max-width: 520px;">Topics I plan to write about — subscribe via LinkedIn or follow on Instagram to be notified.</p>
+        <p style="max-width: 500px;">A window into my work, travels, music, and life outside the simulation terminal.</p>
       </div>
 
+      <!-- YouTube Videos -->
+      <h5 class="mb-4" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-faint);">YouTube</h5>
+      <div class="row g-4 mb-5">
+
+        <!-- VIDEO 1 — Replace YOUR_VIDEO_ID_1 with the YouTube video ID -->
+        <div class="col-12 col-md-6">
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1"
+              title="Video 1"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <p class="media-caption">Replace this caption with a description of the video.</p>
+        </div>
+
+        <!-- VIDEO 2 — Replace YOUR_VIDEO_ID_2 with the YouTube video ID -->
+        <div class="col-12 col-md-6">
+          <div class="video-wrapper">
+            <iframe
+              src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2"
+              title="Video 2"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <p class="media-caption">Replace this caption with a description of the video.</p>
+        </div>
+
+        <!-- Copy the <div class="col-12 col-md-6"> block above to add more videos -->
+
+      </div>
+
+      <!-- Instagram Posts -->
+      <h5 class="mb-4" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-faint);">Instagram</h5>
       <div class="row g-4">
 
-        <!-- Engineering -->
+        <!-- INSTAGRAM POST 1 — Paste Instagram embed code inside the wrapper div -->
         <div class="col-12 col-sm-6 col-lg-4">
-          <div class="blog-card" style="border-top: 3px solid var(--accent);">
-            <i class="bi bi-cpu" style="font-size: 1.6rem; color: var(--accent); display: block; margin-bottom: 14px;"></i>
-            <h5>CFD &amp; Engineering</h5>
-            <p>
-              OpenFOAM tutorials, solver development notes, UDF walkthroughs,
-              and thoughts on computational methods in engineering.
+          <div class="instagram-embed-wrapper">
+            <!-- Paste your Instagram embed <blockquote> code here. Example:
+            <blockquote class="instagram-media"
+              data-instgrm-permalink="https://www.instagram.com/p/YOUR_POST_ID/"
+              data-instgrm-version="14"
+              style="width:100%;">
+            </blockquote>
+            -->
+            <p style="color: var(--text-faint); font-size: 0.85rem; border: 1px dashed var(--border); padding: 24px; text-align: center; border-radius: 4px; margin: 0;">
+              Instagram post 1 — paste embed code here
             </p>
           </div>
         </div>
 
-        <!-- Travel -->
+        <!-- INSTAGRAM POST 2 -->
         <div class="col-12 col-sm-6 col-lg-4">
-          <div class="blog-card" style="border-top: 3px solid var(--accent);">
-            <i class="bi bi-airplane" style="font-size: 1.6rem; color: var(--accent); display: block; margin-bottom: 14px;"></i>
+          <div class="instagram-embed-wrapper">
+            <p style="color: var(--text-faint); font-size: 0.85rem; border: 1px dashed var(--border); padding: 24px; text-align: center; border-radius: 4px; margin: 0;">
+              Instagram post 2 — paste embed code here
+            </p>
+          </div>
+        </div>
+
+        <!-- INSTAGRAM POST 3 -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="instagram-embed-wrapper">
+            <p style="color: var(--text-faint); font-size: 0.85rem; border: 1px dashed var(--border); padding: 24px; text-align: center; border-radius: 4px; margin: 0;">
+              Instagram post 3 — paste embed code here
+            </p>
+          </div>
+        </div>
+
+        <!-- Copy the <div class="col-..."> block above to add more Instagram posts -->
+
+      </div>
+
+    </div>
+
+    <!-- Instagram embed activation script — keep at the end of this section -->
+    <script async src="//www.instagram.com/embed.js"></script>
+  </section>
+
+
+  <!-- ============================================================
+       TOPIC CATEGORIES
+       Shows readers what this journal covers.
+       Change badge from "Coming Soon" to "Active" once you
+       start publishing in that category.
+       ============================================================ -->
+  <section class="section section-light">
+    <div class="container">
+
+      <div class="mb-5">
+        <span class="section-label">Explore</span>
+        <h2 class="section-title">What I Write About</h2>
+        <hr class="section-divider">
+      </div>
+
+      <div class="row g-4">
+
+        <!-- CFD & Engineering -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="journal-topic-card">
+            <i class="bi bi-cpu-fill topic-icon"></i>
+            <span class="topic-badge active">Active</span>
+            <h5>CFD &amp; Engineering</h5>
+            <p>
+              OpenFOAM tutorials, solver development notes, UDF walkthroughs,
+              and thoughts on computational methods in engineering practice.
+            </p>
+          </div>
+        </div>
+
+        <!-- Travel & Culture -->
+        <div class="col-12 col-sm-6 col-lg-4">
+          <div class="journal-topic-card">
+            <i class="bi bi-airplane-fill topic-icon"></i>
+            <span class="topic-badge active">Active</span>
             <h5>Travel &amp; Culture</h5>
             <p>
               Stories from around the world — places visited for conferences, research,
-              and pure wanderlust. Honest accounts of what I found, felt, and learnt.
+              and pure wanderlust. What I found, felt, and learned.
             </p>
           </div>
         </div>
 
         <!-- Music & Creativity -->
         <div class="col-12 col-sm-6 col-lg-4">
-          <div class="blog-card" style="border-top: 3px solid var(--accent);">
-            <i class="bi bi-music-note-beamed" style="font-size: 1.6rem; color: var(--accent); display: block; margin-bottom: 14px;"></i>
+          <div class="journal-topic-card">
+            <i class="bi bi-music-note-beamed topic-icon"></i>
+            <span class="topic-badge">Coming Soon</span>
             <h5>Music &amp; Creativity</h5>
             <p>
               Notes on playing flute and guitar, making Reels and Shorts,
@@ -174,38 +279,41 @@
           </div>
         </div>
 
-        <!-- Geopolitics & Economics -->
+        <!-- Running & Fitness -->
         <div class="col-12 col-sm-6 col-lg-4">
-          <div class="blog-card" style="border-top: 3px solid var(--accent);">
-            <i class="bi bi-globe2" style="font-size: 1.6rem; color: var(--accent); display: block; margin-bottom: 14px;"></i>
-            <h5>Geopolitics &amp; Economics</h5>
+          <div class="journal-topic-card">
+            <i class="bi bi-activity topic-icon"></i>
+            <span class="topic-badge">Coming Soon</span>
+            <h5>Running &amp; Fitness</h5>
             <p>
-              Analysis and curiosity about how the world is wired —
-              trade, energy, technology policy, and what it means for engineers.
+              Training logs, race recaps, and what marathon running teaches you
+              about discipline, patience, and pushing your limits deliberately.
             </p>
           </div>
         </div>
 
         <!-- Books & Ideas -->
         <div class="col-12 col-sm-6 col-lg-4">
-          <div class="blog-card" style="border-top: 3px solid var(--accent);">
-            <i class="bi bi-book" style="font-size: 1.6rem; color: var(--accent); display: block; margin-bottom: 14px;"></i>
+          <div class="journal-topic-card">
+            <i class="bi bi-book-fill topic-icon"></i>
+            <span class="topic-badge">Coming Soon</span>
             <h5>Books &amp; Ideas</h5>
             <p>
-              What I'm reading, what it made me think, and why.
+              What I'm reading, what it made me think, and why it matters.
               From technical texts to history, philosophy, and biography.
             </p>
           </div>
         </div>
 
-        <!-- Health & Lifestyle -->
+        <!-- Geopolitics & Economics -->
         <div class="col-12 col-sm-6 col-lg-4">
-          <div class="blog-card" style="border-top: 3px solid var(--accent);">
-            <i class="bi bi-heart-pulse" style="font-size: 1.6rem; color: var(--accent); display: block; margin-bottom: 14px;"></i>
-            <h5>Health &amp; Lifestyle</h5>
+          <div class="journal-topic-card">
+            <i class="bi bi-globe2 topic-icon"></i>
+            <span class="topic-badge">Coming Soon</span>
+            <h5>Geopolitics &amp; Economics</h5>
             <p>
-              Thoughts on building a sustainable life as a busy engineer —
-              fitness, sleep, habits, and what actually works.
+              Analysis and curiosity about how the world is wired —
+              trade, energy, technology policy, and what it means for engineers.
             </p>
           </div>
         </div>
@@ -235,7 +343,7 @@
             <li><a href="index.html#services">Services</a></li>
             <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="cv.html">CV</a></li>
-            <li><a href="blog.html">Blog</a></li>
+            <li><a href="blog.html">Journal</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>

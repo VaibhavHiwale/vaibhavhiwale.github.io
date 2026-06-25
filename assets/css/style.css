@@ -192,6 +192,14 @@ ul li {
   color: var(--accent);
 }
 
+/* White hamburger icon for dark navbar — Bootstrap's default is dark-colored */
+#main-navbar .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+#main-navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255%2c255%2c255%2c0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c%2fsvg%3e");
+}
+
 /* Mobile: stacks social icons below nav links */
 @media (max-width: 991px) {
   .navbar-social {
@@ -214,6 +222,17 @@ ul li {
   align-items: center;
   padding: 120px 0 80px;   /* top padding clears the fixed navbar */
   background-color: var(--bg-white);
+  background-image: radial-gradient(rgba(192, 163, 117, 0.18) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Short gold bar — add <span class="hero-accent-bar"></span> above the hero <h1> */
+.hero-accent-bar {
+  display: block;
+  width: 52px;
+  height: 3px;
+  background-color: var(--accent);
+  margin-bottom: 20px;
 }
 
 .hero-label {
@@ -1078,4 +1097,63 @@ ul li {
   .cv-sidebar {
     margin-top: 40px;
   }
+}
+
+
+/* ================================================================
+   19. JOURNAL PAGE — topic category tiles and badges
+   ================================================================ */
+.journal-topic-card {
+  padding: 36px 28px;
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  background-color: var(--bg-white);
+  height: 100%;
+  transition: box-shadow 0.25s, transform 0.25s;
+}
+
+.journal-topic-card:hover {
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+}
+
+.journal-topic-card .topic-icon {
+  font-size: 1.8rem;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.journal-topic-card h5 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.journal-topic-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* "Coming Soon" / "Active" status badge on topic cards */
+.topic-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 3px 8px;
+  margin-bottom: 14px;
+}
+
+.topic-badge.active {
+  color: var(--accent-dark);
+  border-color: var(--accent);
+  background-color: #f9f4ed;
 }
