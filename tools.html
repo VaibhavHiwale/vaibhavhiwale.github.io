@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'dark');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Free CFD calculator tools — Reynolds number calculator, Y+ wall distance, Mach number, hydraulic diameter, and engineering unit converter for fluid mechanics.">
+  <title>CFD Calculator Tools | Vaibhav Hiwale</title>
+
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://vaibhavhiwale.github.io/tools.html">
+  <meta property="og:title"       content="CFD Calculator Tools — Reynolds Number, Y+, Mach Number | Vaibhav Hiwale">
+  <meta property="og:description" content="Free online CFD calculators: Reynolds number, Y+ first cell height, Mach number, hydraulic diameter, and unit converter for fluid mechanics engineers.">
+  <meta property="og:image"       content="https://vaibhavhiwale.github.io/assets/images/website-128x128.png">
+  <meta name="twitter:card"       content="summary">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYW1WSX6J1"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PYW1WSX6J1');
+  </script>
+
+  <link rel="shortcut icon" href="assets/images/website-128x128.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .tool-card {
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--accent);
+      padding: 32px 28px;
+      background: var(--bg-white);
+      margin-bottom: 28px;
+    }
+    .tool-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+    .tool-card-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .tool-formula {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      background: var(--bg-light);
+      border-left: 3px solid var(--accent);
+      padding: 7px 13px;
+      margin-bottom: 24px;
+    }
+    .tool-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 5px;
+    }
+    .tool-input, .tool-select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 9px 13px;
+      font-family: var(--font);
+      font-size: 0.92rem;
+      color: var(--text);
+      background: var(--bg-white);
+      transition: border-color 0.2s;
+    }
+    .tool-input:focus, .tool-select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .result-box {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 24px 16px;
+      text-align: center;
+      height: 100%;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .result-num {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.1;
+      word-break: break-all;
+    }
+    .result-unit {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: var(--text-faint);
+      margin-top: 4px;
+    }
+    .result-sub {
+      margin-top: 12px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .regime-pill {
+      display: inline-block;
+      padding: 3px 11px;
+      border-radius: 2px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .pill-green  { background: rgba(60,181,95,.13);   color: #3cb55f; }
+    .pill-gold   { background: rgba(192,163,117,.15); color: var(--accent); }
+    .pill-red    { background: rgba(220,80,80,.12);   color: #e05050; }
+    .pill-purple { background: rgba(168,85,247,.12);  color: #a855f7; }
+    .preset-row  { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 14px; }
+    .preset-chip {
+      font-size: 0.7rem;
+      font-family: var(--font);
+      padding: 3px 10px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--text-muted);
+      background: none;
+      cursor: pointer;
+      transition: border-color .18s, color .18s;
+    }
+    .preset-chip:hover { border-color: var(--accent); color: var(--accent); }
+    /* Unit converter tabs */
+    .utab-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 22px;
+    }
+    .utab-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      padding: 7px 13px;
+      font-family: var(--font);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color .18s;
+    }
+    .utab-btn.active  { color: var(--accent); border-bottom-color: var(--accent); }
+    .utab-btn:hover:not(.active) { color: var(--text); }
+    .utab-panel { display: none; }
+    .utab-panel.active { display: block; }
+    .conv-box {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 4px 0;
+      margin-top: 14px;
+    }
+    .conv-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+    .conv-row:last-child { border-bottom: none; }
+    .conv-label { color: var(--text-muted); }
+    .conv-val   { font-weight: 600; color: var(--text); font-family: 'Courier New', monospace; letter-spacing: 0.02em; }
+    .tool-icon  { font-size: 1.35rem; color: var(--accent); margin-right: 10px; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top" id="main-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Vaibhav Hiwale</a>
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link active" href="tools.html">Tools</a></li>
+          <li class="nav-item"><a class="nav-link" href="cv.html">CV</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Journal</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="navbar-social ms-3">
+          <a href="https://www.linkedin.com/in/vaibhavhiwale/" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="https://twitter.com/hiwale_vaibhav" target="_blank" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://www.instagram.com/vaibhav.exist/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        </div>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle colour scheme"><i class="bi bi-sun-fill"></i></button>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container">
+      <span class="section-label">Engineering Utilities</span>
+      <h1>CFD Calculator Tools</h1>
+      <p style="margin-top:12px;max-width:580px;font-size:1rem;color:var(--text-muted);">
+        Quick calculations for fluid mechanics and CFD pre-processing workflows —
+        Reynolds number, Y⁺ wall distance, Mach number, hydraulic diameter, and unit conversions.
+        All computed client-side, no data leaves your browser.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- CALCULATORS -->
+  <section class="section">
+    <div class="container">
+
+
+      <!-- ── 1. REYNOLDS NUMBER ─────────────────────────────────── -->
+      <div class="tool-card">
+        <div class="d-flex align-items-center mb-1">
+          <i class="bi bi-tsunami tool-icon"></i>
+          <div class="tool-card-title">Reynolds Number</div>
+        </div>
+        <div class="tool-card-desc">Determines the flow regime — laminar, transitional, or turbulent.</div>
+        <code class="tool-formula">Re = ρ U L / μ = U L / ν</code>
+
+        <div class="row g-4">
+          <div class="col-12 col-lg-7">
+            <div class="mb-3">
+              <span class="tool-label">Fluid preset</span>
+              <div class="preset-row">
+                <button class="preset-chip" onclick="rePreset(1.004e-6)">Water 20°C</button>
+                <button class="preset-chip" onclick="rePreset(1.516e-5)">Air 20°C</button>
+                <button class="preset-chip" onclick="rePreset(1.338e-5)">Air 0°C</button>
+                <button class="preset-chip" onclick="rePreset(2.306e-5)">Air 100°C</button>
+                <button class="preset-chip" onclick="rePreset(9.4e-5)">Oil 40°C</button>
+                <button class="preset-chip" onclick="rePreset(3.0e-7)">Mercury 25°C</button>
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col-12 col-sm-6">
+                <label class="tool-label" for="re-vel">Velocity U (m/s)</label>
+                <input class="tool-input" id="re-vel" type="number" step="any" placeholder="e.g. 2.5" oninput="calcRe()">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="tool-label" for="re-len">Length / Diameter L (m)</label>
+                <input class="tool-input" id="re-len" type="number" step="any" placeholder="e.g. 0.05" oninput="calcRe()">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="tool-label" for="re-nu">Kinematic viscosity ν (m²/s)</label>
+                <input class="tool-input" id="re-nu" type="number" step="any" placeholder="e.g. 1.516e-5" oninput="calcRe()">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="tool-label" for="re-geo">Geometry</label>
+                <select class="tool-select" id="re-geo" onchange="calcRe()">
+                  <option value="pipe">Internal pipe / duct</option>
+                  <option value="plate">External flat plate</option>
+                  <option value="sphere">Sphere / bluff body</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-5">
+            <div class="result-box">
+              <div class="result-num" id="re-out">—</div>
+              <div class="result-unit">Reynolds number</div>
+              <div class="result-sub" id="re-regime"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ── 2. Y+ WALL DISTANCE ────────────────────────────────── -->
+      <div class="tool-card">
+        <div class="d-flex align-items-center mb-1">
+          <i class="bi bi-layers tool-icon"></i>
+          <div class="tool-card-title">Y⁺ First Cell Height</div>
+        </div>
+        <div class="tool-card-desc">Estimates the wall-adjacent cell size required to achieve a target y⁺ value. Uses flat-plate Schlichting friction correlation.</div>
+        <code class="tool-formula">Δy = y⁺ · μ / (ρ · u_τ) &nbsp;|&nbsp; u_τ = √(τ_w / ρ) &nbsp;|&nbsp; C_f ≈ 0.026 Re<sup>−1/7</sup></code>
+
+        <div class="row g-4">
+          <div class="col-12 col-lg-7">
+            <div class="mb-3">
+              <span class="tool-label">Fluid preset</span>
+              <div class="preset-row">
+                <button class="preset-chip" onclick="ypPreset(1.204,1.825e-5)">Air 20°C</button>
+                <button class="preset-chip" onclick="ypPreset(1.293,1.716e-5)">Air 0°C</button>
+                <button class="preset-chip" onclick="ypPreset(0.946,2.181e-5)">Air 100°C</button>
+                <button class="preset-chip" onclick="ypPreset(998.2,1.002e-3)">Water 20°C</button>
+                <button class="preset-chip" onclick="ypPreset(876,0.0824)">Oil 40°C</button>
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col-12 col-sm-6">
+                <label class="tool-label" for="yp-yplus">Target y⁺</label>
+                <input class="tool-input" id="yp-yplus" type="number" step="any" placeholder="e.g. 1" value="1" oninput="calcYplus()">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="tool-label" for="yp-vel">Freestream velocity U (m/s)</label>
+                <input class="tool-input" id="yp-vel" type="number" step="any" placeholder="e.g. 30" oninput="calcYplus()">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="tool-label" for="yp-len">Reference length L (m)</label>
+                <input class="tool-input" id="yp-len" type="number" step="any" placeholder="e.g. 1.0" oninput="calcYplus()">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="tool-label" for="yp-rho">Density ρ (kg/m³)</label>
+                <input class="tool-input" id="yp-rho" type="number" step="any" placeholder="e.g. 1.204" oninput="calcYplus()">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="tool-label" for="yp-mu">Dynamic viscosity μ (Pa·s)</label>
+                <input class="tool-input" id="yp-mu" type="number" step="any" placeholder="e.g. 1.825e-5" oninput="calcYplus()">
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-5">
+            <div class="result-box">
+              <div class="result-num" id="yp-out">—</div>
+              <div class="result-unit" id="yp-unit">first cell height</div>
+              <div class="result-sub" id="yp-sub"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ── 3. MACH NUMBER ─────────────────────────────────────── -->
+      <div class="tool-card">
+        <div class="d-flex align-items-center mb-1">
+          <i class="bi bi-send tool-icon"></i>
+          <div class="tool-card-title">Mach Number</div>
+        </div>
+        <div class="tool-card-desc">Computes Mach number and classifies the compressibility regime.</div>
+        <code class="tool-formula">Ma = V / a &nbsp;|&nbsp; a = √(γ R T)</code>
+
+        <div class="row g-4">
+          <div class="col-12 col-lg-7">
+            <div class="row g-3">
+              <div class="col-12 col-sm-6">
+                <label class="tool-label" for="ma-vel">Velocity V (m/s)</label>
+                <input class="tool-input" id="ma-vel" type="number" step="any" placeholder="e.g. 340" oninput="calcMach()">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="tool-label" for="ma-temp">Temperature</label>
+                <input class="tool-input" id="ma-temp" type="number" step="any" placeholder="e.g. 20" oninput="calcMach()">
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="tool-label" for="ma-tunit">Temperature unit</label>
+                <select class="tool-select" id="ma-tunit" onchange="calcMach()">
+                  <option value="C">°C (Celsius)</option>
+                  <option value="K">K (Kelvin)</option>
+                </select>
+              </div>
+              <div class="col-12 col-sm-6">
+                <label class="tool-label" for="ma-gas">Gas</label>
+                <select class="tool-select" id="ma-gas" onchange="calcMach()">
+                  <option value="1.4,287">Air  (γ = 1.4, R = 287)</option>
+                  <option value="1.289,188.9">CO₂  (γ = 1.289, R = 189)</option>
+                  <option value="1.667,2077">Helium  (γ = 1.667, R = 2077)</option>
+                  <option value="1.405,4124">Hydrogen  (γ = 1.405, R = 4124)</option>
+                  <option value="1.667,208.1">Argon  (γ = 1.667, R = 208)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-5">
+            <div class="result-box">
+              <div class="result-num" id="ma-out">—</div>
+              <div class="result-unit">Mach number</div>
+              <div class="result-sub" id="ma-sub"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ── 4. HYDRAULIC DIAMETER ──────────────────────────────── -->
+      <div class="tool-card">
+        <div class="d-flex align-items-center mb-1">
+          <i class="bi bi-circle tool-icon"></i>
+          <div class="tool-card-title">Hydraulic Diameter</div>
+        </div>
+        <div class="tool-card-desc">Used as the characteristic length for non-circular ducts in Reynolds number calculations.</div>
+        <code class="tool-formula">D_h = 4A / P_wet</code>
+
+        <div class="row g-4">
+          <div class="col-12 col-lg-7">
+            <div class="row g-3">
+              <div class="col-12">
+                <label class="tool-label" for="dh-shape">Cross-section shape</label>
+                <select class="tool-select" id="dh-shape" onchange="dhChange()">
+                  <option value="circular">Circular pipe</option>
+                  <option value="rect">Rectangular duct</option>
+                  <option value="annular">Annular (concentric)</option>
+                  <option value="triangle">Equilateral triangle</option>
+                </select>
+              </div>
+              <div class="col-12 col-sm-6" id="dh-D-wrap">
+                <label class="tool-label" for="dh-D">Diameter D (m)</label>
+                <input class="tool-input" id="dh-D" type="number" step="any" placeholder="e.g. 0.05" oninput="calcDh()">
+              </div>
+              <div class="col-12 col-sm-6" id="dh-W-wrap" style="display:none">
+                <label class="tool-label" for="dh-W">Width W (m)</label>
+                <input class="tool-input" id="dh-W" type="number" step="any" placeholder="e.g. 0.10" oninput="calcDh()">
+              </div>
+              <div class="col-12 col-sm-6" id="dh-H-wrap" style="display:none">
+                <label class="tool-label" for="dh-H">Height H (m)</label>
+                <input class="tool-input" id="dh-H" type="number" step="any" placeholder="e.g. 0.05" oninput="calcDh()">
+              </div>
+              <div class="col-12 col-sm-6" id="dh-Do-wrap" style="display:none">
+                <label class="tool-label" for="dh-Do">Outer diameter D_o (m)</label>
+                <input class="tool-input" id="dh-Do" type="number" step="any" placeholder="e.g. 0.10" oninput="calcDh()">
+              </div>
+              <div class="col-12 col-sm-6" id="dh-Di-wrap" style="display:none">
+                <label class="tool-label" for="dh-Di">Inner diameter D_i (m)</label>
+                <input class="tool-input" id="dh-Di" type="number" step="any" placeholder="e.g. 0.06" oninput="calcDh()">
+              </div>
+              <div class="col-12 col-sm-6" id="dh-A-wrap" style="display:none">
+                <label class="tool-label" for="dh-A">Side length a (m)</label>
+                <input class="tool-input" id="dh-A" type="number" step="any" placeholder="e.g. 0.05" oninput="calcDh()">
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-5">
+            <div class="result-box">
+              <div class="result-num" id="dh-out">—</div>
+              <div class="result-unit">hydraulic diameter (m)</div>
+              <div class="result-sub" id="dh-sub"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ── 5. UNIT CONVERTER ──────────────────────────────────── -->
+      <div class="tool-card">
+        <div class="d-flex align-items-center mb-1">
+          <i class="bi bi-arrow-left-right tool-icon"></i>
+          <div class="tool-card-title">Engineering Unit Converter</div>
+        </div>
+        <div class="tool-card-desc">Common unit conversions for CFD pre- and post-processing.</div>
+
+        <div class="utab-nav">
+          <button class="utab-btn active" onclick="utab('vel',this)">Velocity</button>
+          <button class="utab-btn" onclick="utab('pres',this)">Pressure</button>
+          <button class="utab-btn" onclick="utab('temp',this)">Temperature</button>
+          <button class="utab-btn" onclick="utab('dvisc',this)">Dyn. Viscosity</button>
+          <button class="utab-btn" onclick="utab('kvisc',this)">Kin. Viscosity</button>
+          <button class="utab-btn" onclick="utab('len',this)">Length</button>
+          <button class="utab-btn" onclick="utab('mass',this)">Mass Flow</button>
+        </div>
+
+        <!-- Velocity -->
+        <div class="utab-panel active" id="utab-vel">
+          <div class="row g-3">
+            <div class="col-12 col-sm-5">
+              <label class="tool-label" for="cv-vel">Value</label>
+              <input class="tool-input" id="cv-vel" type="number" step="any" placeholder="Enter value" oninput="convVel()">
+            </div>
+            <div class="col-12 col-sm-5">
+              <label class="tool-label" for="cv-vel-u">From</label>
+              <select class="tool-select" id="cv-vel-u" onchange="convVel()">
+                <option value="ms">m/s</option>
+                <option value="kmh">km/h</option>
+                <option value="fts">ft/s</option>
+                <option value="mph">mph</option>
+                <option value="knot">knots</option>
+              </select>
+            </div>
+          </div>
+          <div id="cv-vel-out"></div>
+        </div>
+
+        <!-- Pressure -->
+        <div class="utab-panel" id="utab-pres">
+          <div class="row g-3">
+            <div class="col-12 col-sm-5">
+              <label class="tool-label" for="cv-pres">Value</label>
+              <input class="tool-input" id="cv-pres" type="number" step="any" placeholder="Enter value" oninput="convPres()">
+            </div>
+            <div class="col-12 col-sm-5">
+              <label class="tool-label" for="cv-pres-u">From</label>
+              <select class="tool-select" id="cv-pres-u" onchange="convPres()">
+                <option value="Pa">Pa</option>
+                <option value="kPa">kPa</option>
+                <option value="MPa">MPa</option>
+                <option value="bar">bar</option>
+                <option value="atm">atm</option>
+                <option value="psi">psi</option>
+                <option value="mmHg">mmHg (torr)</option>
+              </select>
+            </div>
+          </div>
+          <div id="cv-pres-out"></div>
+        </div>
+
+        <!-- Temperature -->
+        <div class="utab-panel" id="utab-temp">
+          <div class="row g-3">
+            <div class="col-12 col-sm-5">
+              <label class="tool-label" for="cv-temp">Value</label>
+              <input class="tool-input" id="cv-temp" type="number" step="any" placeholder="Enter value" oninput="convTemp()">
+            </div>
+            <div class="col-12 col-sm-5">
+              <label class="tool-label" for="cv-temp-u">From</label>
+              <select class="tool-select" id="cv-temp-u" onchange="convTemp()">
+                <option value="C">°C</option>
+                <option value="K">K</option>
+                <option value="F">°F</option>
+              </select>
+            </div>
+          </div>
+          <div id="cv-temp-out"></div>
+        </div>
+
+        <!-- Dynamic Viscosity -->
+        <div class="utab-panel" id="utab-dvisc">
+          <div class="row g-3">
+            <div class="col-12 col-sm-5">
+              <label class="tool-label" for="cv-dvisc">Value</label>
+              <input class="tool-input" id="cv-dvisc" type="number" step="any" placeholder="Enter value" oninput="convDvisc()">
+            </div>
+            <div class="col-12 col-sm-5">
+              <label class="tool-label" for="cv-dvisc-u">From</label>
+              <select class="tool-select" id="cv-dvisc-u" onchange="convDvisc()">
+                <option value="Pas">Pa·s</option>
+                <option value="cP">cP  (mPa·s)</option>
+                <option value="P">Poise (P)</option>
+                <option value="lbfts">lb/(ft·s)</option>
+              </select>
+            </div>
+          </div>
+          <div id="cv-dvisc-out"></div>
+        </div>
+
+        <!-- Kinematic Viscosity -->
+        <div class="utab-panel" id="utab-kvisc">
+          <div class="row g-3">
+            <div class="col-12 col-sm-5">
+              <label class="tool-label" for="cv-kvisc">Value</label>
+              <input class="tool-input" id="cv-kvisc" type="number" step="any" placeholder="Enter value" oninput="convKvisc()">
+            </div>
+            <div class="col-12 col-sm-5">
+              <label class="tool-label" for="cv-kvisc-u">From</label>
+              <select class="tool-select" id="cv-kvisc-u" onchange="convKvisc()">
+                <option value="m2s">m²/s</option>
+                <option value="cSt">cSt  (mm²/s)</option>
+                <option value="St">Stokes (St)</option>
+                <option value="ft2s">ft²/s</option>
+              </select>
+            </div>
+          </div>
+          <div id="cv-kvisc-out"></div>
+        </div>
+
+        <!-- Length -->
+        <div class="utab-panel" id="utab-len">
+          <div class="row g-3">
+            <div class="col-12 col-sm-5">
+              <label class="tool-label" for="cv-len">Value</label>
+              <input class="tool-input" id="cv-len" type="number" step="any" placeholder="Enter value" oninput="convLen()">
+            </div>
+            <div class="col-12 col-sm-5">
+              <label class="tool-label" for="cv-len-u">From</label>
+              <select class="tool-select" id="cv-len-u" onchange="convLen()">
+                <option value="m">m</option>
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="um">μm</option>
+                <option value="nm">nm</option>
+                <option value="in">inch</option>
+                <option value="ft">ft</option>
+              </select>
+            </div>
+          </div>
+          <div id="cv-len-out"></div>
+        </div>
+
+        <!-- Mass Flow Rate -->
+        <div class="utab-panel" id="utab-mass">
+          <div class="row g-3">
+            <div class="col-12 col-sm-5">
+              <label class="tool-label" for="cv-mass">Value</label>
+              <input class="tool-input" id="cv-mass" type="number" step="any" placeholder="Enter value" oninput="convMass()">
+            </div>
+            <div class="col-12 col-sm-5">
+              <label class="tool-label" for="cv-mass-u">From</label>
+              <select class="tool-select" id="cv-mass-u" onchange="convMass()">
+                <option value="kgs">kg/s</option>
+                <option value="kgmin">kg/min</option>
+                <option value="kgh">kg/h</option>
+                <option value="gs">g/s</option>
+                <option value="lbmin">lb/min</option>
+                <option value="lbs">lb/s</option>
+              </select>
+            </div>
+          </div>
+          <div id="cv-mass-out"></div>
+        </div>
+
+      </div><!-- /unit converter card -->
+
+    </div><!-- /container -->
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer id="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-4 mb-5 mb-md-0">
+          <div class="footer-brand">Vaibhav Hiwale</div>
+          <div class="footer-tagline">CFD Engineer &amp; Independent Consultant</div>
+          <div class="footer-social">
+            <a href="https://www.linkedin.com/in/vaibhavhiwale/" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="https://twitter.com/hiwale_vaibhav" target="_blank" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.instagram.com/vaibhav.exist/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-md-2 mb-4 mb-md-0">
+          <div class="footer-col-title">Navigate</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="tools.html">Tools</a></li>
+            <li><a href="cv.html">CV</a></li>
+            <li><a href="blog.html">Journal</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-3 mb-4 mb-md-0">
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="index.html#services">CFD Simulation</a></li>
+            <li><a href="index.html#services">Multiphase Flow</a></li>
+            <li><a href="index.html#services">Solver Development</a></li>
+            <li><a href="index.html#services">ML &amp; Scientific Computing</a></li>
+            <li><a href="index.html#services">HPC Automation</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="footer-col-title">Contact</div>
+          <p class="footer-contact-info">
+            Mumbai, Maharashtra, India<br>
+            <a href="mailto:vaibhavhiwale@outlook.com">vaibhavhiwale@outlook.com</a><br>
+            <a href="https://wa.me/+918669624676" target="_blank">+91 866-9624-676</a>
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 Vaibhav Hiwale. All rights reserved.</div>
+    </div>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <a href="https://wa.me/+918669624676" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i></a>
+  <button id="scroll-to-top" aria-label="Scroll to top"><i class="bi bi-arrow-up"></i></button>
+
+  <script>
+  /* ────────────────────────────────────────────────────
+     REYNOLDS NUMBER
+  ──────────────────────────────────────────────────── */
+  function rePreset(nu) {
+    document.getElementById('re-nu').value = nu;
+    calcRe();
+  }
+  function calcRe() {
+    var U   = parseFloat(document.getElementById('re-vel').value);
+    var L   = parseFloat(document.getElementById('re-len').value);
+    var nu  = parseFloat(document.getElementById('re-nu').value);
+    var geo = document.getElementById('re-geo').value;
+    var out = document.getElementById('re-out');
+    var reg = document.getElementById('re-regime');
+    if (!U || !L || !nu || nu <= 0) { out.textContent = '—'; reg.innerHTML = ''; return; }
+    var Re = U * L / nu;
+    out.textContent = Re >= 1e6 ? Re.toExponential(3) : Math.round(Re).toLocaleString();
+    var r = '';
+    if (geo === 'pipe') {
+      if      (Re < 2300) r = '<span class="regime-pill pill-green">Laminar</span><br><small>Re &lt; 2 300 — smooth layered flow</small>';
+      else if (Re < 4000) r = '<span class="regime-pill pill-gold">Transitional</span><br><small>2 300 &lt; Re &lt; 4 000</small>';
+      else                r = '<span class="regime-pill pill-red">Turbulent</span><br><small>Re &gt; 4 000 — chaotic mixing</small>';
+    } else if (geo === 'plate') {
+      if (Re < 5e5) r = '<span class="regime-pill pill-green">Laminar BL</span><br><small>Re &lt; 5 × 10⁵</small>';
+      else          r = '<span class="regime-pill pill-red">Turbulent BL</span><br><small>Re &gt; 5 × 10⁵</small>';
+    } else {
+      if      (Re < 1)    r = '<span class="regime-pill pill-green">Stokes / creeping</span><br><small>Re &lt; 1</small>';
+      else if (Re < 1000) r = '<span class="regime-pill pill-gold">Intermediate</span><br><small>1 &lt; Re &lt; 1 000</small>';
+      else                r = '<span class="regime-pill pill-red">Turbulent wake</span><br><small>Re &gt; 1 000</small>';
+    }
+    reg.innerHTML = r;
+  }
+
+  /* ────────────────────────────────────────────────────
+     Y+ WALL DISTANCE
+  ──────────────────────────────────────────────────── */
+  function ypPreset(rho, mu) {
+    document.getElementById('yp-rho').value = rho;
+    document.getElementById('yp-mu').value  = mu;
+    calcYplus();
+  }
+  function calcYplus() {
+    var yp  = parseFloat(document.getElementById('yp-yplus').value);
+    var U   = parseFloat(document.getElementById('yp-vel').value);
+    var L   = parseFloat(document.getElementById('yp-len').value);
+    var rho = parseFloat(document.getElementById('yp-rho').value);
+    var mu  = parseFloat(document.getElementById('yp-mu').value);
+    var out = document.getElementById('yp-out');
+    var sub = document.getElementById('yp-sub');
+    var un  = document.getElementById('yp-unit');
+    if (!yp || !U || !L || !rho || !mu || rho <= 0 || mu <= 0) {
+      out.textContent = '—'; sub.innerHTML = ''; un.textContent = 'first cell height'; return;
+    }
+    var Re   = rho * U * L / mu;
+    var Cf   = 0.026 * Math.pow(Re, -1/7);
+    var tau  = Cf * 0.5 * rho * U * U;
+    var utau = Math.sqrt(tau / rho);
+    var dy   = yp * mu / (rho * utau);
+    var disp, unit;
+    if      (dy >= 0.001) { disp = dy.toFixed(5);       unit = 'm';  }
+    else if (dy >= 1e-6)  { disp = (dy*1e3).toFixed(5); unit = 'mm'; }
+    else                  { disp = (dy*1e6).toFixed(4); unit = 'μm'; }
+    out.textContent = disp;
+    un.textContent  = 'first cell height (' + unit + ')';
+    sub.innerHTML   =
+      'Re = ' + Re.toExponential(3) + '&emsp;C<sub>f</sub> = ' + Cf.toExponential(3) +
+      '<br>τ<sub>w</sub> = ' + tau.toExponential(3) + ' Pa&emsp;u<sub>τ</sub> = ' + utau.toFixed(4) + ' m/s' +
+      '<br><small style="color:var(--text-faint)">Schlichting flat-plate correlation</small>';
+  }
+
+  /* ────────────────────────────────────────────────────
+     MACH NUMBER
+  ──────────────────────────────────────────────────── */
+  function calcMach() {
+    var V    = parseFloat(document.getElementById('ma-vel').value);
+    var Tin  = parseFloat(document.getElementById('ma-temp').value);
+    var tun  = document.getElementById('ma-tunit').value;
+    var gas  = document.getElementById('ma-gas').value.split(',');
+    var out  = document.getElementById('ma-out');
+    var sub  = document.getElementById('ma-sub');
+    if (!V || isNaN(Tin)) { out.textContent = '—'; sub.innerHTML = ''; return; }
+    var T     = tun === 'C' ? Tin + 273.15 : Tin;
+    var gamma = parseFloat(gas[0]), R = parseFloat(gas[1]);
+    var a     = Math.sqrt(gamma * R * T);
+    var Ma    = V / a;
+    out.textContent = Ma.toFixed(4);
+    var r = '';
+    if      (Ma < 0.3) r = '<span class="regime-pill pill-green">Incompressible</span>';
+    else if (Ma < 0.8) r = '<span class="regime-pill pill-green">Subsonic</span>';
+    else if (Ma < 1.0) r = '<span class="regime-pill pill-gold">High-subsonic</span>';
+    else if (Ma < 1.2) r = '<span class="regime-pill pill-red">Transonic</span>';
+    else if (Ma < 5.0) r = '<span class="regime-pill pill-red">Supersonic</span>';
+    else               r = '<span class="regime-pill pill-purple">Hypersonic</span>';
+    sub.innerHTML = r + '<br>Speed of sound: ' + a.toFixed(1) + ' m/s' +
+      '<br>' + V + ' m/s = ' + (V*3.6).toFixed(1) + ' km/h';
+  }
+
+  /* ────────────────────────────────────────────────────
+     HYDRAULIC DIAMETER
+  ──────────────────────────────────────────────────── */
+  function dhChange() {
+    var s = document.getElementById('dh-shape').value;
+    document.getElementById('dh-D-wrap').style.display  = s==='circular' ? '' : 'none';
+    document.getElementById('dh-W-wrap').style.display  = s==='rect'     ? '' : 'none';
+    document.getElementById('dh-H-wrap').style.display  = s==='rect'     ? '' : 'none';
+    document.getElementById('dh-Do-wrap').style.display = s==='annular'  ? '' : 'none';
+    document.getElementById('dh-Di-wrap').style.display = s==='annular'  ? '' : 'none';
+    document.getElementById('dh-A-wrap').style.display  = s==='triangle' ? '' : 'none';
+    document.getElementById('dh-out').textContent = '—';
+    document.getElementById('dh-sub').innerHTML   = '';
+  }
+  function calcDh() {
+    var s = document.getElementById('dh-shape').value;
+    var A, P, Dh;
+    if (s === 'circular') {
+      var D = parseFloat(document.getElementById('dh-D').value); if (!D) return;
+      Dh = D; A = Math.PI*D*D/4; P = Math.PI*D;
+    } else if (s === 'rect') {
+      var W = parseFloat(document.getElementById('dh-W').value);
+      var H = parseFloat(document.getElementById('dh-H').value); if (!W||!H) return;
+      A = W*H; P = 2*(W+H); Dh = 4*A/P;
+    } else if (s === 'annular') {
+      var Do = parseFloat(document.getElementById('dh-Do').value);
+      var Di = parseFloat(document.getElementById('dh-Di').value); if (!Do||!Di||Di>=Do) return;
+      Dh = Do-Di; A = Math.PI*(Do*Do-Di*Di)/4; P = Math.PI*(Do+Di);
+    } else {
+      var a = parseFloat(document.getElementById('dh-A').value); if (!a) return;
+      A = Math.sqrt(3)/4*a*a; P = 3*a; Dh = 4*A/P;
+    }
+    document.getElementById('dh-out').textContent = Dh.toFixed(5);
+    document.getElementById('dh-sub').innerHTML   =
+      'A = ' + A.toExponential(3) + ' m²&emsp;P<sub>wet</sub> = ' + P.toFixed(5) + ' m';
+  }
+
+  /* ────────────────────────────────────────────────────
+     UNIT CONVERTER — shared helpers
+  ──────────────────────────────────────────────────── */
+  function utab(id, btn) {
+    document.querySelectorAll('.utab-panel').forEach(function(p){ p.classList.remove('active'); });
+    document.querySelectorAll('.utab-btn').forEach(function(b){ b.classList.remove('active'); });
+    document.getElementById('utab-'+id).classList.add('active');
+    btn.classList.add('active');
+  }
+  function fmt(n) {
+    if (n === 0) return '0';
+    var a = Math.abs(n);
+    if (a >= 0.0001 && a < 1e8) return parseFloat(n.toPrecision(6)).toString();
+    return n.toExponential(4);
+  }
+  function rows(pairs) {
+    return '<div class="conv-box mt-3">' + pairs.map(function(p){
+      return '<div class="conv-row"><span class="conv-label">'+p[0]+'</span><span class="conv-val">'+fmt(p[1])+'</span></div>';
+    }).join('') + '</div>';
+  }
+
+  function convVel() {
+    var v = parseFloat(document.getElementById('cv-vel').value);
+    var u = document.getElementById('cv-vel-u').value;
+    if (isNaN(v)) { document.getElementById('cv-vel-out').innerHTML=''; return; }
+    var f = {ms:1, kmh:1/3.6, fts:0.3048, mph:0.44704, knot:0.514444}[u];
+    var ms = v * f;
+    document.getElementById('cv-vel-out').innerHTML = rows([
+      ['m/s', ms], ['km/h', ms*3.6], ['ft/s', ms/0.3048], ['mph', ms/0.44704], ['knots', ms/0.514444]
+    ]);
+  }
+  function convPres() {
+    var v = parseFloat(document.getElementById('cv-pres').value);
+    var u = document.getElementById('cv-pres-u').value;
+    if (isNaN(v)) { document.getElementById('cv-pres-out').innerHTML=''; return; }
+    var f = {Pa:1, kPa:1e3, MPa:1e6, bar:1e5, atm:101325, psi:6894.757, mmHg:133.322}[u];
+    var Pa = v * f;
+    document.getElementById('cv-pres-out').innerHTML = rows([
+      ['Pa', Pa], ['kPa', Pa/1e3], ['MPa', Pa/1e6],
+      ['bar', Pa/1e5], ['atm', Pa/101325], ['psi', Pa/6894.757], ['mmHg (torr)', Pa/133.322]
+    ]);
+  }
+  function convTemp() {
+    var v = parseFloat(document.getElementById('cv-temp').value);
+    var u = document.getElementById('cv-temp-u').value;
+    if (isNaN(v)) { document.getElementById('cv-temp-out').innerHTML=''; return; }
+    var K = u==='C' ? v+273.15 : u==='K' ? v : (v-32)*5/9+273.15;
+    document.getElementById('cv-temp-out').innerHTML = rows([
+      ['°C', K-273.15], ['K', K], ['°F', (K-273.15)*9/5+32], ['°R (Rankine)', K*1.8]
+    ]);
+  }
+  function convDvisc() {
+    var v = parseFloat(document.getElementById('cv-dvisc').value);
+    var u = document.getElementById('cv-dvisc-u').value;
+    if (isNaN(v)) { document.getElementById('cv-dvisc-out').innerHTML=''; return; }
+    var f = {Pas:1, cP:1e-3, P:0.1, lbfts:1.48816}[u];
+    var Pas = v * f;
+    document.getElementById('cv-dvisc-out').innerHTML = rows([
+      ['Pa·s (kg/m·s)', Pas], ['cP (mPa·s)', Pas*1e3],
+      ['Poise (g/cm·s)', Pas*10], ['lb/(ft·s)', Pas/1.48816]
+    ]);
+  }
+  function convKvisc() {
+    var v = parseFloat(document.getElementById('cv-kvisc').value);
+    var u = document.getElementById('cv-kvisc-u').value;
+    if (isNaN(v)) { document.getElementById('cv-kvisc-out').innerHTML=''; return; }
+    var f = {m2s:1, cSt:1e-6, St:1e-4, ft2s:0.09290304}[u];
+    var m2s = v * f;
+    document.getElementById('cv-kvisc-out').innerHTML = rows([
+      ['m²/s', m2s], ['cSt (mm²/s)', m2s*1e6],
+      ['Stokes (cm²/s)', m2s*1e4], ['ft²/s', m2s/0.09290304]
+    ]);
+  }
+  function convLen() {
+    var v = parseFloat(document.getElementById('cv-len').value);
+    var u = document.getElementById('cv-len-u').value;
+    if (isNaN(v)) { document.getElementById('cv-len-out').innerHTML=''; return; }
+    var f = {m:1, mm:1e-3, cm:0.01, um:1e-6, nm:1e-9, in:0.0254, ft:0.3048}[u];
+    var m = v * f;
+    document.getElementById('cv-len-out').innerHTML = rows([
+      ['m', m], ['mm', m*1e3], ['cm', m*1e2],
+      ['μm', m*1e6], ['nm', m*1e9], ['inch', m/0.0254], ['ft', m/0.3048]
+    ]);
+  }
+  function convMass() {
+    var v = parseFloat(document.getElementById('cv-mass').value);
+    var u = document.getElementById('cv-mass-u').value;
+    if (isNaN(v)) { document.getElementById('cv-mass-out').innerHTML=''; return; }
+    var f = {kgs:1, kgmin:1/60, kgh:1/3600, gs:0.001, lbmin:0.00755987, lbs:0.453592}[u];
+    var kgs = v * f;
+    document.getElementById('cv-mass-out').innerHTML = rows([
+      ['kg/s', kgs], ['kg/min', kgs*60], ['kg/h', kgs*3600],
+      ['g/s', kgs*1000], ['lb/s', kgs/0.453592], ['lb/min', kgs/0.00755987]
+    ]);
+  }
+
+  /* Init */
+  dhChange();
+  </script>
+
+</body>
+</html>
