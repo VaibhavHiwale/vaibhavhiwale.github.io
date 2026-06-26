@@ -1170,7 +1170,7 @@ ul li {
   --bg-light:   #1c1c1c;
   --text:       #e0e0e0;
   --text-muted: #9a9a9a;
-  --text-faint: #555555;
+  --text-faint: #7a7a7a;
   --border:     #2e2e2e;
 }
 
@@ -1395,4 +1395,17 @@ ul li {
 
 [data-theme="dark"] .patent-callout {
   background: linear-gradient(135deg, rgba(192,163,117,0.07), transparent);
+}
+
+/* Achievement subtexts sit on a fixed dark bg (#282828) in both modes.
+   --text-faint alone is not enough contrast there; use a brighter override. */
+[data-theme="dark"] .achievement-item p {
+  color: #a8a8a8;
+}
+
+/* Outline button hover: avoid white-text-on-white-bg in dark mode */
+[data-theme="dark"] .btn-outline-custom:hover {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #1a1a1a;
 }

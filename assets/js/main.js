@@ -173,3 +173,17 @@ if (typeof Typed !== 'undefined' && document.getElementById('typed-roles')) {
     smartBackspace: true,
   });
 }
+
+
+/* ── 8. MOBILE NAVBAR AUTO-CLOSE ──────────────────────────────────
+   Bootstrap 5 does not close the collapsed navbar when a nav link
+   is tapped on mobile. This adds that behaviour.
+   ──────────────────────────────────────────────────────────────── */
+document.querySelectorAll('#navbarNav .nav-link').forEach(function (link) {
+  link.addEventListener('click', function () {
+    var navbarNav = document.getElementById('navbarNav');
+    if (navbarNav && navbarNav.classList.contains('show')) {
+      bootstrap.Collapse.getOrCreateInstance(navbarNav).hide();
+    }
+  });
+});
