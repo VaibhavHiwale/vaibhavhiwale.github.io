@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -6,6 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="CV of Vaibhav Hiwale — CFD Engineer with MS from IIT Madras. Expert in ANSYS Fluent, OpenFOAM solver development, multiphase flow, ROM, and HPC automation.">
   <title>CV | Vaibhav Hiwale</title>
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://vaibhavhiwale.github.io/cv.html">
+  <meta property="og:title"       content="CV | Vaibhav Hiwale — CFD Engineer">
+  <meta property="og:description" content="CV of Vaibhav Hiwale — MS from IIT Madras, ANSYS experience, Indian Patent granted, Best Paper Award at HTFF-2023 London.">
+  <meta property="og:image"       content="https://vaibhavhiwale.github.io/assets/images/website-128x128.png">
+  <meta name="twitter:card"       content="summary">
+  <meta name="twitter:site"       content="@hiwale_vaibhav">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYW1WSX6J1"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PYW1WSX6J1');
+</script>
 
   <link rel="shortcut icon" href="assets/images/website-128x128.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
@@ -152,6 +171,15 @@
                 with Teardrop Shaped Protrusions."
                 <em>ASME Journal of Thermal Science and Engineering Applications</em>, 2026.
               </p>
+              <button class="pub-copy-btn" data-bibtex="@article{hiwale2026elliptical,
+  author  = {Hiwale, Vaibhav and others},
+  title   = {Numerical Investigation of the Thermo-Hydraulic Performance of Elliptical Tubes Enhanced with Teardrop Shaped Protrusions},
+  journal = {ASME Journal of Thermal Science and Engineering Applications},
+  year    = {2026},
+  note    = {Under Review}
+}">
+                <i class="bi bi-clipboard"></i><span>Copy BibTeX</span>
+              </button>
             </div>
 
             <div class="publication-item">
@@ -161,14 +189,31 @@
                 <em>The 9th World Congress on Mechanical, Chemical, and Material Engineering (HTFF 2023)</em>.
                 <a href="https://doi.org/10.11159/htff23.147" target="_blank">DOI: 10.11159/htff23.147</a>
               </p>
+              <button class="pub-copy-btn" data-bibtex="@inproceedings{hiwale2023turbulent,
+  author    = {Hiwale, Vaibhav and Vengadesan, S.},
+  title     = {Turbulent heat transfer in elliptical tube with dimples},
+  booktitle = {The 9th World Congress on Mechanical, Chemical, and Material Engineering (HTFF 2023)},
+  year      = {2023},
+  month     = {August},
+  doi       = {10.11159/htff23.147}
+}">
+                <i class="bi bi-clipboard"></i><span>Copy BibTeX</span>
+              </button>
             </div>
 
             <div class="publication-item">
               <span class="pub-badge">Patent Granted · April 2026</span>
-              <p>
-                "Hyperloop Transportation System" — Indian Patent No. <strong>587506</strong>, Granted April 23, 2026.
-                Prevents choking-induced drag increase on hyperloop pods in reduced-pressure environments.
-              </p>
+              <div class="patent-callout">
+                <i class="bi bi-patch-check-fill"></i>
+                <div>
+                  <div class="patent-no">Indian Patent No. 587506</div>
+                  <div class="patent-title">Hyperloop Transportation System</div>
+                  <p class="patent-meta">
+                    Granted April 23, 2026 · Prevents choking-induced drag increase on hyperloop pods
+                    in reduced-pressure tube environments.
+                  </p>
+                </div>
+              </div>
             </div>
 
           </div><!-- /Publications -->
@@ -298,6 +343,11 @@
               <span class="skill-badge">Linux</span>
               <span class="skill-badge">HPC Clusters</span>
             </div>
+
+            <!-- Skills radar chart -->
+            <div class="radar-chart-wrapper">
+              <canvas id="skills-radar"></canvas>
+            </div>
           </div>
 
           <!-- Certifications -->
@@ -383,7 +433,44 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="assets/js/main.js"></script>
+  <script>
+    (function () {
+      const canvas = document.getElementById('skills-radar');
+      if (!canvas) return;
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const textCol  = isDark ? '#9a9a9a' : '#666666';
+      const gridCol  = isDark ? '#2e2e2e' : '#e0e0e0';
+      new Chart(canvas, {
+        type: 'radar',
+        data: {
+          labels: ['CFD Simulation', 'Solver Dev', 'Programming', 'ML / ROM', 'CAD & HPC'],
+          datasets: [{
+            data: [95, 85, 82, 75, 70],
+            backgroundColor: 'rgba(192, 163, 117, 0.18)',
+            borderColor: '#c0a375',
+            pointBackgroundColor: '#c0a375',
+            borderWidth: 2,
+            pointRadius: 4,
+          }]
+        },
+        options: {
+          plugins: { legend: { display: false } },
+          scales: {
+            r: {
+              min: 0, max: 100,
+              ticks: { display: false, stepSize: 25 },
+              grid:        { color: gridCol },
+              angleLines:  { color: gridCol },
+              pointLabels: { color: textCol, font: { size: 11, family: "'Jost', sans-serif" } },
+            }
+          }
+        }
+      });
+    }());
+  </script>
+  <a href="https://wa.me/+918669624676" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i></a>
   <button id="scroll-to-top" aria-label="Scroll to top"><i class="bi bi-arrow-up"></i></button>
 
 </body>

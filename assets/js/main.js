@@ -92,3 +92,84 @@ if (themeToggle) {
     }
   }
 }());
+
+
+/* ── 4. AOS (ANIMATE ON SCROLL) ──────────────────────────────────
+   AOS library is loaded via CDN on pages that use it.
+   init() is called only when the library is present.
+   ──────────────────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', function () {
+  if (typeof AOS !== 'undefined') {
+    AOS.init({ duration: 650, once: true, offset: 60, easing: 'ease-out-cubic' });
+  }
+});
+
+
+/* ── 5. READING TIME & SCROLL PROGRESS BAR ────────────────────────
+   Runs on article pages that include .article-body,
+   #reading-time, and #reading-progress elements.
+   ──────────────────────────────────────────────────────────────── */
+(function () {
+  const articleBody = document.querySelector('.article-body');
+  const readingTimeEl = document.getElementById('reading-time');
+  const progressBar  = document.getElementById('reading-progress');
+
+  if (articleBody && readingTimeEl) {
+    const words   = (articleBody.innerText || '').trim().split(/\s+/).length;
+    const minutes = Math.max(1, Math.round(words / 200));
+    readingTimeEl.textContent = minutes + ' min read';
+  }
+
+  if (progressBar && articleBody) {
+    window.addEventListener('scroll', function () {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      const pct   = total > 0 ? (window.scrollY / total) * 100 : 0;
+      progressBar.style.width = Math.min(pct, 100) + '%';
+    });
+  }
+}());
+
+
+/* ── 6. BIBTEX COPY BUTTONS ───────────────────────────────────────
+   Each .pub-copy-btn button carries a data-bibtex attribute.
+   Clicking copies the citation to the clipboard.
+   ──────────────────────────────────────────────────────────────── */
+document.querySelectorAll('.pub-copy-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    const text = btn.getAttribute('data-bibtex');
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(function () {
+      btn.classList.add('copied');
+      const icon  = btn.querySelector('i');
+      const label = btn.querySelector('span');
+      if (icon)  icon.className    = 'bi bi-check2';
+      if (label) label.textContent = 'Copied!';
+      setTimeout(function () {
+        btn.classList.remove('copied');
+        if (icon)  icon.className    = 'bi bi-clipboard';
+        if (label) label.textContent = 'Copy BibTeX';
+      }, 2200);
+    });
+  });
+});
+
+
+/* ── 7. TYPED.JS HERO ANIMATION ──────────────────────────────────
+   Typed.js CDN is added only on index.html.
+   Cycles through professional role titles in the hero label.
+   ──────────────────────────────────────────────────────────────── */
+if (typeof Typed !== 'undefined' && document.getElementById('typed-roles')) {
+  new Typed('#typed-roles', {
+    strings: [
+      'CFD Engineer',
+      'Solver Developer',
+      'ML‑CFD Specialist',
+      'Independent Consultant',
+    ],
+    typeSpeed:  55,
+    backSpeed:  30,
+    backDelay:  1800,
+    loop:       true,
+    smartBackspace: true,
+  });
+}

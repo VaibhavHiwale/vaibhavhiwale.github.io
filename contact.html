@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -7,9 +7,29 @@
   <meta name="description" content="Get in touch with Vaibhav Hiwale — CFD Engineer and independent consultant available for simulation projects, solver development, and engineering consulting.">
   <title>Contact | Vaibhav Hiwale</title>
 
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://vaibhavhiwale.github.io/contact.html">
+  <meta property="og:title"       content="Contact | Vaibhav Hiwale">
+  <meta property="og:description" content="Get in touch with Vaibhav Hiwale — CFD Engineer and independent consultant available for simulation projects and engineering consulting.">
+  <meta property="og:image"       content="https://vaibhavhiwale.github.io/assets/images/website-128x128.png">
+  <meta name="twitter:card"       content="summary">
+  <meta name="twitter:site"       content="@hiwale_vaibhav">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYW1WSX6J1"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PYW1WSX6J1');
+</script>
+
   <link rel="shortcut icon" href="assets/images/website-128x128.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -98,25 +118,29 @@
               </div>
             </div>
 
+            <div class="col-12">
+              <div class="contact-info-card" style="background: linear-gradient(135deg, rgba(192,163,117,0.08) 0%, rgba(192,163,117,0.03) 100%); border: 1px solid rgba(192,163,117,0.25);">
+                <i class="bi bi-calendar2-check contact-icon"></i>
+                <h6>Book a Discovery Call</h6>
+                <p style="font-size: 0.82rem; color: var(--text-muted); margin: 4px 0 12px;">30-minute free call — discuss your project, timeline, and fit.</p>
+                <a href="" onclick="Calendly.initPopupWidget({url:'https://calendly.com/vaibhavhiwale'});return false;"
+                   class="btn-primary-custom" style="font-size: 0.82rem; padding: 8px 18px;">
+                  <i class="bi bi-calendar-plus" style="margin-right: 6px;"></i>Schedule on Calendly
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
 
 
-        <!-- Right: enquiry form -->
-        <!-- ============================================================
-             CONTACT FORM — using Formspree (free for static sites)
-
-             SETUP (takes 2 minutes):
-             1. Go to https://formspree.io and sign up for a free account.
-             2. Create a new form — Formspree will give you a form ID like "xrgjeokw".
-             3. Replace YOUR_FORM_ID in the action URL below with your form ID.
-                Example: action="https://formspree.io/f/xrgjeokw"
-             4. Save the file and push to GitHub. Done — submissions arrive by email.
-
-             Until you set up Formspree, the form will not send anything.
-             ============================================================ -->
+        <!-- Right: enquiry form — powered by Web3Forms -->
         <div class="col-12 col-lg-8">
-          <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="contact-form">
+
+            <input type="hidden" name="access_key" value="1b95d7e7-2a70-4947-9b2a-95e35484bf2d">
+            <input type="hidden" name="subject" value="New Consulting Enquiry — vaibhavhiwale.github.io">
+            <input type="hidden" name="redirect" value="https://vaibhavhiwale.github.io/contact.html">
 
             <div class="row g-3">
 
@@ -133,8 +157,8 @@
               </div>
 
               <div class="col-12">
-                <label class="form-label" for="subject">Subject</label>
-                <input type="text" class="form-control" id="subject" name="subject"
+                <label class="form-label" for="topic">Subject</label>
+                <input type="text" class="form-control" id="topic" name="topic"
                        placeholder="Brief topic (e.g. CFD consulting enquiry)">
               </div>
 
@@ -206,7 +230,9 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
   <script src="assets/js/main.js"></script>
+  <a href="https://wa.me/+918669624676" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i></a>
   <button id="scroll-to-top" aria-label="Scroll to top"><i class="bi bi-arrow-up"></i></button>
 
 </body>

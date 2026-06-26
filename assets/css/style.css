@@ -1237,3 +1237,162 @@ ul li {
     margin-top: 10px;
   }
 }
+
+
+/* ================================================================
+   21. FEATURE ADDITIONS
+   — Available badge · Reading progress bar · BibTeX copy button
+     Patent callout · Skills radar · WhatsApp float · AOS tweaks
+   ================================================================ */
+
+/* ── Available-for-work badge (hero) ─────────────────────────── */
+.available-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background-color: rgba(40, 167, 69, 0.1);
+  border: 1px solid rgba(40, 167, 69, 0.32);
+  color: #3cb55f;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+}
+
+.available-dot {
+  width: 7px;
+  height: 7px;
+  background-color: #3cb55f;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.75); }
+}
+
+/* ── Reading progress bar (article pages) ────────────────────── */
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: var(--accent);
+  z-index: 9999;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* ── Reading time tag ─────────────────────────────────────────── */
+.reading-time-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  margin-top: 4px;
+}
+
+/* ── BibTeX copy button ──────────────────────────────────────── */
+.pub-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.73rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 4px 10px;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font);
+  transition: color 0.2s, border-color 0.2s;
+  margin-top: 8px;
+}
+
+.pub-copy-btn:hover  { color: var(--accent); border-color: var(--accent); }
+.pub-copy-btn.copied { color: #3cb55f; border-color: #3cb55f; }
+
+/* ── Patent callout ──────────────────────────────────────────── */
+.patent-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: linear-gradient(135deg, rgba(192,163,117,0.1), rgba(192,163,117,0.03));
+  border: 1px solid rgba(192,163,117,0.4);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin-top: 8px;
+}
+
+.patent-callout i { color: var(--accent); font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+
+.patent-callout .patent-no {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 3px;
+}
+
+.patent-callout .patent-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.patent-callout .patent-meta {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── Skills radar chart ──────────────────────────────────────── */
+.radar-chart-wrapper {
+  position: relative;
+  max-width: 260px;
+  margin: 20px auto 0;
+}
+
+/* ── WhatsApp floating button ─────────────────────────────────── */
+.whatsapp-float {
+  position: fixed;
+  bottom: 82px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  z-index: 999;
+  box-shadow: 0 4px 14px rgba(37,211,102,0.45);
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.whatsapp-float:hover { background-color: #1da952; color: #fff; transform: scale(1.06); }
+
+/* ── Dark-mode overrides for new elements ────────────────────── */
+[data-theme="dark"] .available-badge {
+  background-color: rgba(60, 181, 95, 0.09);
+  border-color: rgba(60, 181, 95, 0.28);
+}
+
+[data-theme="dark"] .patent-callout {
+  background: linear-gradient(135deg, rgba(192,163,117,0.07), transparent);
+}

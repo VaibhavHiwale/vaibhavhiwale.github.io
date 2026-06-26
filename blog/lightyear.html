@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -7,9 +7,32 @@
   <meta name="description" content="Vaibhav Hiwale visits Lightyear's R&D centre in Helmond, Netherlands — a story about curiosity, solar electric vehicles, and cold-emailing your way into inspiring places.">
   <title>My Visit to Lightyear | Vaibhav Hiwale</title>
 
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type"        content="article">
+  <meta property="og:url"         content="https://vaibhavhiwale.github.io/blog/lightyear.html">
+  <meta property="og:title"       content="My Visit to Lightyear in The Netherlands">
+  <meta property="og:description" content="A story about curiosity, solar electric vehicles, and cold-emailing your way into inspiring places.">
+  <meta property="og:image"       content="https://vaibhavhiwale.github.io/assets/images/img20220725130130-original-1-1256x1675.webp">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:site"       content="@hiwale_vaibhav">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYW1WSX6J1"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PYW1WSX6J1');
+</script>
+
   <link rel="shortcut icon" href="../assets/images/website-128x128.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- KaTeX — for rendering math equations in articles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <!-- Prism.js — syntax highlighting for code blocks -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -46,12 +69,15 @@
   </nav>
 
 
+  <!-- Reading progress bar -->
+  <div id="reading-progress"></div>
+
   <!-- ARTICLE HEADER -->
   <section class="article-header">
     <div class="container">
       <span class="section-label">Travel</span>
       <h1>My Visit to Lightyear in The Netherlands</h1>
-      <p class="article-date">30 July 2022</p>
+      <p class="article-date">30 July 2022 &nbsp;·&nbsp; <span class="reading-time-tag"><i class="bi bi-clock"></i> <span id="reading-time"></span></span></p>
     </div>
   </section>
 
@@ -176,7 +202,11 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body)"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
   <script src="../assets/js/main.js"></script>
+  <a href="https://wa.me/+918669624676" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="bi bi-whatsapp"></i></a>
   <button id="scroll-to-top" aria-label="Scroll to top"><i class="bi bi-arrow-up"></i></button>
 
 </body>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -6,6 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Vaibhav Hiwale — CFD Engineer and independent consultant specialising in ANSYS Fluent, OpenFOAM solver development, multiphase flow, ML-accelerated CFD, and HPC automation.">
   <title>Vaibhav Hiwale | CFD Engineer &amp; Consultant</title>
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://vaibhavhiwale.github.io/">
+  <meta property="og:title"       content="Vaibhav Hiwale | CFD Engineer &amp; Consultant">
+  <meta property="og:description" content="CFD Engineer and independent consultant specialising in ANSYS Fluent, OpenFOAM solver development, multiphase flow, ML-accelerated CFD, and HPC automation.">
+  <meta property="og:image"       content="https://vaibhavhiwale.github.io/assets/images/website-128x128.png">
+  <meta name="twitter:card"       content="summary">
+  <meta name="twitter:site"       content="@hiwale_vaibhav">
+  <meta name="twitter:creator"    content="@hiwale_vaibhav">
+
+  <!-- Google Analytics — sign up at analytics.google.com, replace G-PYW1WSX6J1 with your Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYW1WSX6J1"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PYW1WSX6J1');
+</script>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="assets/images/website-128x128.png" type="image/x-icon">
@@ -15,6 +35,12 @@
 
   <!-- Bootstrap Icons (CDN) — used for nav social icons, achievement icons, etc. -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- AOS — Animate On Scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+  <!-- Calendly popup widget -->
+  <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
 
   <!-- Google Font: Jost -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -83,7 +109,12 @@
       <div class="row">
         <div class="col-12 col-lg-8">
 
-          <span class="hero-label">CFD Engineer &amp; Independent Consultant</span>
+          <div class="available-badge">
+            <span class="available-dot"></span>
+            Currently available for consulting
+          </div>
+
+          <span class="hero-label"><span id="typed-roles"></span></span>
 
           <span class="hero-accent-bar"></span>
           <h1 class="hero-title">Hi, I'm Vaibhav.</h1>
@@ -98,6 +129,10 @@
           <div class="hero-cta">
             <a href="portfolio.html" class="btn-primary-custom">View My Work</a>
             <a href="contact.html" class="btn-outline-custom">Get In Touch</a>
+            <a href="" onclick="Calendly.initPopupWidget({url:'https://calendly.com/vaibhavhiwale'});return false;"
+               class="btn-outline-custom" style="border-color: rgba(192,163,117,0.4);">
+              <i class="bi bi-calendar2-check" style="margin-right: 6px;"></i>Book a Call
+            </a>
           </div>
 
         </div>
@@ -128,7 +163,7 @@
       <!-- Row 1: 3 service cards -->
       <div class="row g-4 mb-4">
 
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
           <div class="service-card">
             <div class="service-number">01</div>
             <h5>CFD Simulation &amp; Analysis</h5>
@@ -139,7 +174,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
           <div class="service-card">
             <div class="service-number">02</div>
             <h5>Multiphase Flow &amp; Heat Transfer</h5>
@@ -150,7 +185,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
           <div class="service-card">
             <div class="service-number">03</div>
             <h5>Solver Development</h5>
@@ -166,7 +201,7 @@
       <!-- Row 2: 2 service cards, centered -->
       <div class="row g-4 justify-content-center">
 
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
           <div class="service-card">
             <div class="service-number">04</div>
             <h5>ML &amp; Scientific Computing</h5>
@@ -177,7 +212,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
           <div class="service-card">
             <div class="service-number">05</div>
             <h5>HPC &amp; Workflow Automation</h5>
@@ -290,7 +325,7 @@
 
       <div class="row justify-content-center">
 
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="0">
           <div class="achievement-item">
             <i class="bi bi-trophy achievement-icon"></i>
             <h4>Best Paper Award</h4>
@@ -298,7 +333,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
           <div class="achievement-item">
             <i class="bi bi-patch-check achievement-icon"></i>
             <h4>Indian Patent Granted</h4>
@@ -306,7 +341,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="200">
           <div class="achievement-item">
             <i class="bi bi-globe achievement-icon"></i>
             <h4>Top 5 Globally</h4>
@@ -333,8 +368,12 @@
             a custom solver written, or ML-based speedup of your workflow —
             I'm available for project-based consulting engagements.
           </p>
-          <div class="text-center mt-4">
+          <div class="text-center mt-4" style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
             <a href="contact.html" class="btn-primary-custom">Start a Conversation</a>
+            <a href="" onclick="Calendly.initPopupWidget({url:'https://calendly.com/vaibhavhiwale'});return false;"
+               class="btn-outline-custom">
+              <i class="bi bi-calendar2-check" style="margin-right: 6px;"></i>Book a Free Call
+            </a>
           </div>
         </div>
       </div>
@@ -415,9 +454,20 @@
 
   <!-- Bootstrap 5 JS (CDN) — handles navbar toggle & dropdown menus -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <!-- Typed.js — hero role animation (index.html only) -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16/dist/typed.umd.js"></script>
+  <!-- Calendly popup widget -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 
   <!-- Site script (scroll effect + scroll-to-top button) -->
   <script src="assets/js/main.js"></script>
+
+  <!-- WhatsApp floating button -->
+  <a href="https://wa.me/+918669624676" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+  </a>
 
   <!-- Scroll-to-top button (style is in style.css, logic is in main.js) -->
   <button id="scroll-to-top" aria-label="Scroll to top">
