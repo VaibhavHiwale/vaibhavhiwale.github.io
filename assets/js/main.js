@@ -55,3 +55,40 @@ if (scrollBtn) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
+
+
+/* ── 3. DARK / LIGHT MODE TOGGLE ──────────────────────────────
+   Default theme is dark. Preference is saved to localStorage.
+   An inline script in each page's <head> applies the saved theme
+   before first paint, preventing any flash of unstyled content.
+   ──────────────────────────────────────────────────────────── */
+const themeToggle = document.getElementById('theme-toggle');
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  if (themeToggle) {
+    const icon = themeToggle.querySelector('i');
+    if (icon) {
+      icon.className = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+    }
+  }
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', function () {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
+}
+
+/* Sync toggle icon with the theme applied by the inline <head> script */
+(function () {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  if (themeToggle) {
+    const icon = themeToggle.querySelector('i');
+    if (icon) {
+      icon.className = current === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+    }
+  }
+}());

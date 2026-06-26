@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'dark');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Vaibhav Hiwale — CFD Engineer and independent consultant specialising in ANSYS Fluent, OpenFOAM solver development, multiphase flow, ML-accelerated CFD, and HPC automation.">
   <title>Vaibhav Hiwale | CFD Engineer &amp; Consultant</title>
@@ -66,6 +67,7 @@
             <i class="bi bi-instagram"></i>
           </a>
         </div>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle colour scheme"><i class="bi bi-sun-fill"></i></button>
 
       </div>
     </div>

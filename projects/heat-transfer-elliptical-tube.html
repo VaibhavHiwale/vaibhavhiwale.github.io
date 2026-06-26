@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'dark');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Heat Transfer Enhancement in Elliptical Tube with Teardrop Protrusions — CFD project by Vaibhav Hiwale.">
   <title>Heat Transfer Enhancement in Elliptical Tube | Vaibhav Hiwale</title>
@@ -36,6 +37,7 @@
           <a href="https://twitter.com/hiwale_vaibhav" target="_blank" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
           <a href="https://www.instagram.com/vaibhav.exist/" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
         </div>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle colour scheme"><i class="bi bi-sun-fill"></i></button>
       </div>
     </div>
   </nav>

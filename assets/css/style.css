@@ -1157,3 +1157,83 @@ ul li {
   border-color: var(--accent);
   background-color: #f9f4ed;
 }
+
+
+/* ================================================================
+   20. DARK MODE
+   Applied when <html data-theme="dark">.
+   Default is dark — the inline script in each page's <head>
+   sets this before first paint to prevent a flash of light content.
+   ================================================================ */
+[data-theme="dark"] {
+  --bg-white:   #161616;
+  --bg-light:   #1c1c1c;
+  --text:       #e0e0e0;
+  --text-muted: #9a9a9a;
+  --text-faint: #555555;
+  --border:     #2e2e2e;
+}
+
+[data-theme="dark"] #hero {
+  background-image: radial-gradient(rgba(192, 163, 117, 0.28) 1px, transparent 1px);
+}
+
+/* Hard-coded light colours that need dark overrides */
+[data-theme="dark"] .skill-badge,
+[data-theme="dark"] .portfolio-tag,
+[data-theme="dark"] .pub-badge {
+  background-color: #2a2520;
+  color: var(--accent);
+}
+
+[data-theme="dark"] .tool-tag {
+  background-color: #252525;
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .topic-badge.active {
+  background-color: #2a2218;
+}
+
+[data-theme="dark"] .contact-form .form-control::placeholder {
+  color: var(--text-faint);
+}
+
+/* Stronger card shadows on dark backgrounds */
+[data-theme="dark"] .service-card:hover,
+[data-theme="dark"] .portfolio-card:hover,
+[data-theme="dark"] .blog-card:hover,
+[data-theme="dark"] .journal-topic-card:hover {
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ── THEME TOGGLE BUTTON ─────────────────────────────────────── */
+.theme-toggle {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.75);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: color 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+@media (max-width: 991px) {
+  .theme-toggle {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
