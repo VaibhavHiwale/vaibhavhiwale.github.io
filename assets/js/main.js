@@ -177,13 +177,22 @@ if (typeof Typed !== 'undefined' && document.getElementById('typed-roles')) {
 
 /* ── 8. MOBILE NAVBAR AUTO-CLOSE ──────────────────────────────────
    Bootstrap 5 does not close the collapsed navbar when a nav link
-   is tapped on mobile. This adds that behaviour.
+   or the theme toggle is tapped on mobile. This fixes both.
    ──────────────────────────────────────────────────────────────── */
+function closeNavbarIfOpen() {
+  var navbarNav = document.getElementById('navbarNav');
+  if (navbarNav && navbarNav.classList.contains('show')) {
+    bootstrap.Collapse.getOrCreateInstance(navbarNav).hide();
+  }
+}
+
+/* Close on any nav link tap */
 document.querySelectorAll('#navbarNav .nav-link').forEach(function (link) {
-  link.addEventListener('click', function () {
-    var navbarNav = document.getElementById('navbarNav');
-    if (navbarNav && navbarNav.classList.contains('show')) {
-      bootstrap.Collapse.getOrCreateInstance(navbarNav).hide();
-    }
-  });
+  link.addEventListener('click', closeNavbarIfOpen);
 });
+
+/* Close when theme toggle is tapped */
+var themeToggleEl = document.getElementById('theme-toggle');
+if (themeToggleEl) {
+  themeToggleEl.addEventListener('click', closeNavbarIfOpen);
+}
